@@ -1,0 +1,4 @@
+<h1>Click below to know your Colour Suggestions for Today</h1>
+    <div class="d-grid gap-2 col-2 mx-auto">
+  <button class="btn btn-outline-success btn-lg" type="button">Button</button>
+</div>

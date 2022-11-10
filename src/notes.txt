@@ -1,0 +1,371 @@
+import React from 'react'
+import Navbar from './Navbar'
+import { useFormik } from 'formik';
+import axios from 'axios';
+import ntc from 'ntcjs';
+
+function Suggestions() {
+
+    const setBg = () => {
+        const randomColor1 = Math.floor(Math.random() * 16777215).toString(16);
+        const randomColor2 = Math.floor(Math.random() * 16777215).toString(16);
+        const randomColor3 = Math.floor(Math.random() * 16777215).toString(16);
+        const randomColor4 = Math.floor(Math.random() * 16777215).toString(16);
+        document.getElementById('color01').value = "#" + randomColor1;
+        document.getElementById('color02').value = "#" + randomColor2;
+        document.getElementById('color03').value = "#" + randomColor3;
+        document.getElementById('color04').value = "#" + randomColor4;
+
+        let colordisplay1 = document.getElementById('color01').value;
+        let colordisplay2 = document.getElementById('color02').value;
+        let colordisplay3 = document.getElementById('color03').value;
+        let colordisplay4 = document.getElementById('color04').value;
+        const n_match1 = ntc.name(colordisplay1);
+        const n_match2 = ntc.name(colordisplay2);
+        const n_match3 = ntc.name(colordisplay3);
+        const n_match4 = ntc.name(colordisplay4);
+        const n_name1 = n_match1[1];
+        const n_name2 = n_match2[1];
+        const n_name3 = n_match3[1];
+        const n_name4 = n_match4[1];
+        console.log(n_name1);
+        console.log(n_name2);
+        console.log(n_name3);
+        console.log(n_name4);
+    }
+
+    let colorpicker = () => {
+
+        let users = [];
+
+        if (document.getElementById("radio1").checked == true) {
+            let colorans = document.getElementById("color01").value;
+            let colorans1 = document.getElementById("color02").value;
+            users.push(colorans, colorans1);
+            console.log(users)
+        } else {
+            console.log(null)
+        }
+    }
+
+    let colorpicker1 = () => {
+
+        // let users = [];
+
+        if (document.getElementById("radio2").checked == true) {
+            let colorans2 = document.getElementById("color03").value;
+            let colorans3 = document.getElementById("color04").value;
+            document.getElementById('coloranswer').innerText = `${colorans2}`
+            document.getElementById('coloranswer1').innerText = `${colorans3}`
+            // users.push(colorans2, colorans3)
+            // console.log(users);
+        } else {
+            console.log(null)
+        }
+    }
+
+
+    const formik = useFormik({
+        initialValues: {
+            date: "",
+            day: "",
+            color1: "",
+            color2: "",
+            color3: "",
+            color4: "",
+        },
+        validate: (values) => {
+
+            // let errors = {}
+            // if (values.name === "") {
+            //     errors.name = "Please enter name"
+            // }
+
+            // if (values.name.length <= 5) {
+            //     errors.name = "name must be greater than 5 letters"
+            // }
+
+            // if (values.position === "") {
+            //     errors.position = "Please enter position"
+            // }
+
+            // return errors;
+        },
+        onSubmit: async (values) => {
+            let user = await axios.post("https://636a5195b10125b78fd784c2.mockapi.io/suggestions", values)
+            alert("User created")
+        }
+    })
+
+    return (
+        <>
+            <div className='page2'>
+                <Navbar></Navbar>
+                <div className='container-fluid'>
+                    <div className='row'>
+                        <div className='col-8'>
+                            <h1 className='mt-5 mb-3'><b>Click below to know your Colour Suggestions for Today</b></h1>
+                            <form className='suggestions' onSubmit={formik.handleSubmit}>
+                                <label className='suggestionlabel'>Date</label>
+                                <input className='form-control' type={"date"} value={formik.values.date} onChange={formik.handleChange} name="date"></input><span style={{ color: "red" }}>Enter product Name</span><br /><br />
+                                <label className='suggestionlabel'>Day</label>
+                                <input className='form-control' type={"text"} value={formik.values.day} onChange={formik.handleChange} name="day"></input><span style={{ color: "red" }}>Please enter image URL in http/https or as a Link</span><br /><br />
+                                <label className='suggestionlabel'>Color Combination - 1</label>&nbsp;&nbsp;&nbsp;
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio1" onClick={colorpicker} />&nbsp;&nbsp;&nbsp;
+                                <input className='form-control' type={"color"} value={formik.values.color1} onChange={formik.handleChange} name="color1" id='color01'></input>&nbsp;&nbsp;&nbsp;
+                                <input className='form-control' type={"color"} value={formik.values.color2} onChange={formik.handleChange} name="color2" id='color02'></input>&nbsp;&nbsp;&nbsp;
+                                < br />< br />
+                                <label className='suggestionlabel'>Color Combination - 2</label>&nbsp;&nbsp;&nbsp;
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio2" onClick={colorpicker1} />&nbsp;&nbsp;&nbsp;
+                                <input className='form-control' type={"color"} id='color03'></input>&nbsp;&nbsp;&nbsp;
+                                <input className='form-control' type={"color"} id='color04'></input>&nbsp;&nbsp;&nbsp;
+                                <br /><br />
+                                <input name="color3" value={formik.values.color3} onChange={formik.handleChange} id='coloranswer'></input>
+                                <input name="color4" value={formik.values.color4} onChange={formik.handleChange} id='coloranswer1'></input>
+                                <button className='btn btn-light btn-lg' onClick={setBg} type="button">Randomize</button>< br />
+                                <div class="d-grid gap-2 col-2 mx-auto btn2">
+                                <input className='btn btn-light btn-lg' type={"submit"} value="Submit"></input>
+                                {/* <button class="btn btn-light btn-lg" type="button"><span className='btn1'>Tap Me</span></button> */}
+                            </div>
+                            </form>< br />
+                            < br />
+                            <span>
+                                <input type={"color"}></input>
+                                <input type={"color"}></input>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default Suggestions
+
+
+
+
+import React from 'react'
+import Navbar from './Navbar'
+import { useFormik } from 'formik';
+import axios from 'axios';
+import ntc from 'ntcjs';
+
+function Suggestions() {
+
+    const setBg = () => {
+        const randomColor1 = Math.floor(Math.random() * 16777215).toString(16);
+        const randomColor2 = Math.floor(Math.random() * 16777215).toString(16);
+        const randomColor3 = Math.floor(Math.random() * 16777215).toString(16);
+        const randomColor4 = Math.floor(Math.random() * 16777215).toString(16);
+        document.getElementById('color01').value = "#" + randomColor1;
+        document.getElementById('color02').value = "#" + randomColor2;
+        document.getElementById('color03').value = "#" + randomColor3;
+        document.getElementById('color04').value = "#" + randomColor4;
+
+        let colordisplay1 = document.getElementById('color01').value;
+        let colordisplay2 = document.getElementById('color02').value;
+        let colordisplay3 = document.getElementById('color03').value;
+        let colordisplay4 = document.getElementById('color04').value;
+        const n_match1 = ntc.name(colordisplay1);
+        const n_match2 = ntc.name(colordisplay2);
+        const n_match3 = ntc.name(colordisplay3);
+        const n_match4 = ntc.name(colordisplay4);
+        const n_name1 = n_match1[1];
+        const n_name2 = n_match2[1];
+        const n_name3 = n_match3[1];
+        const n_name4 = n_match4[1];
+        console.log(n_name1);
+        console.log(n_name2);
+        console.log(n_name3);
+        console.log(n_name4);
+    }
+
+    let colorpicker = () => {
+
+        let users = [];
+
+        if (document.getElementById("radio1").checked == true) {
+            let colorans = document.getElementById("color01").value;
+            let colorans1 = document.getElementById("color02").value;
+            users.push(colorans, colorans1);
+            console.log(users)
+        } else {
+            console.log(null)
+        }
+    }
+
+    let colorpicker1 = () => {
+
+        let users = [];
+
+        if (document.getElementById("radio2").checked == true) {
+            let colorans2 = document.getElementById("color03").value;
+            let colorans3 = document.getElementById("color04").value;
+            users.push(colorans2, colorans3)
+            console.log(users);
+        } else {
+            console.log(null)
+        }
+    }
+
+
+    const formik = useFormik({
+        initialValues: {
+            date: "",
+            day: "",
+            color1: "#ff0000",
+            color2: "#FFFF00",
+            color3: "#0000FF",
+            color4: "#ffc0cb",
+        },
+        validate: (values) => {
+
+            // let errors = {}
+            // if (values.name === "") {
+            //     errors.name = "Please enter name"
+            // }
+
+            // if (values.name.length <= 5) {
+            //     errors.name = "name must be greater than 5 letters"
+            // }
+
+            // if (values.position === "") {
+            //     errors.position = "Please enter position"
+            // }
+
+            // return errors;
+        },
+        onSubmit: async (values) => {
+            let user = await axios.post("https://636a5195b10125b78fd784c2.mockapi.io/suggestions", values)
+            alert("User created")
+        }
+    })
+
+    return (
+        <>
+            <div className='page2'>
+                <Navbar></Navbar>
+                <div className='container-fluid'>
+                    <div className='row'>
+                        <div className='col-8'>
+                            <h1 className='mt-5 mb-3'><b>Click below to know your Colour Suggestions for Today</b></h1>
+                            <form className='suggestions' onSubmit={formik.handleSubmit}>
+                                <label className='suggestionlabel'>Date</label>
+                                <input className='form-control' type={"date"} value={formik.values.date} onChange={formik.handleChange} name="date"></input><span style={{ color: "red" }}>Enter product Name</span><br /><br />
+                                <label className='suggestionlabel'>Day</label>
+                                <input className='form-control' type={"text"} value={formik.values.day} onChange={formik.handleChange} name="day"></input><span style={{ color: "red" }}>Please enter image URL in http/https or as a Link</span><br /><br />
+                                <label className='suggestionlabel'>Color Combination - 1</label>&nbsp;&nbsp;&nbsp;
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio1" onClick={colorpicker} />&nbsp;&nbsp;&nbsp;
+                                <input className='form-control' type={"color"} value={formik.values.color1} onChange={formik.handleChange} name="color1" id='color01'></input>&nbsp;&nbsp;&nbsp;
+                                <input className='form-control' type={"color"} value={formik.values.color2} onChange={formik.handleChange} name="color2" id='color02'></input>&nbsp;&nbsp;&nbsp;
+                                < br />< br />
+                                <label className='suggestionlabel'>Color Combination - 2</label>&nbsp;&nbsp;&nbsp;
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio2" onClick={colorpicker1} />&nbsp;&nbsp;&nbsp;
+                                <input className='form-control' type={"color"} value={formik.values.color3} onChange={formik.handleChange} name="color3" id='color03'></input>&nbsp;&nbsp;&nbsp;
+                                <input className='form-control' type={"color"} value={formik.values.color4} onChange={formik.handleChange} name="color4" id='color04'></input>&nbsp;&nbsp;&nbsp;
+                                <br /><br />
+                                {/* <button className='btn btn-light btn-lg' onClick={setBg} type="button">Randomize</button>< br /> */}
+                                <div class="d-grid gap-2 col-2 mx-auto btn2">
+                                <input className='btn btn-light btn-lg' type={"submit"} value="Submit"></input>
+                                {/* <button class="btn btn-light btn-lg" type="button"><span className='btn1'>Tap Me</span></button> */}
+                            </div>
+                            </form>< br />
+                            < br />
+                            <span>
+                                <input type={"color"}></input>
+                                <input type={"color"}></input>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default Suggestions
+
+
+
+// const handlecolor1 = () => {
+    //     const color1answer = document.getElementById('color01').value;
+    //     console.log(color1answer);
+    //     setColor1(color1answer);
+    // }
+
+    // const handlecolor2 = (event) => {
+    //     const color2answer = event.target.value;
+    //     console.log(color2answer);
+    //     setColor2(color2answer);
+    // }
+
+    // const handlecolor3 = (event) => {
+    //     const color3answer = event.target.value;
+    //     console.log(color3answer);
+    //     setColor3(color3answer);
+    // }
+
+    // const handlecolor4 = (event) => {
+    //     const color4answer = event.target.value;
+    //     console.log(color4answer);
+    //     setColor4(color4answer);
+    // }
+
+
+    // const btn = document.getElementById("btClickMe");
+    // let get = getCookie("clicked"); // check cookie after page loaded
+    // if (get) {
+    //     btn.disabled = false; // disable the button after page loaded
+    // }
+
+    // function setCookie(name, value, days) {
+    //     var expires = "";
+    //     if (days) {
+    //         var date = new Date();
+    //         date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    //         expires = "; expires=" + date.toUTCString();
+    //     }
+    //     document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    // }
+    // function getCookie(name) {
+    //     var nameEQ = name + "=";
+    //     var ca = document.cookie.split(";");
+    //     for (var i = 0; i < ca.length; i++) {
+    //         var c = ca[i];
+    //         while (c.charAt(0) == " ") c = c.substring(1, c.length);
+    //         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    //     }
+    //     return null;
+    // }
+
+    // let disablebutton = function (_event) {
+    //     get = getCookie("clicked"); // check cookie exist
+    //     if (!get) setCookie("clicked", "true", 1); // set cookie after clicked
+    //     btn.disabled = true; // disable the button after button clicked
+    //     var msg = document.getElementById("msg");
+    //     msg.innerHTML = "Data submitted and the button disabled in 24hrs  &#9786;";
+    // };
+
+    // let colorpicker = () => {
+  //   let colour1 = document.getElementById("color1").value;
+  // const n_match1 = ntc.name(colour1);
+  // const n_name1 = n_match1[1];
+  // setColor1(n_name1);
+  // console.log(color1);
+  // document.getElementById("colourans1").innerText = `${color1}`
+  // }
+
+  
+
+  // let colorpicker = () => {
+
+  //   if(document.getElementById("flexCheckDefault").checked == true){
+  //     let colorans = document.getElementById("color1").value;
+  //   console.log(colorans);
+  //   } else {
+  //     console.log(null)
+  //   }
+
+  // }

@@ -1,38 +1,300 @@
 .App {
   text-align: center;
+  font-family:Andale Mono, monospace;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.menubtn{
+  border: 2px solid black;
+  border-radius: 20px;
+  background-color: rgb(243, 243, 243);
+  margin-right: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.brandbtn{
+  padding-right: 60px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.btn1{
+  color: palevioletred;
+  font-weight: bolder;
+}
+
+.btn2{
+  border: 5px solid palevioletred;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.btn3{
+  font-style: italic;
+  color: palevioletred;
+  font-weight: bolder;
+}
+
+.btn4{
+  font-weight: bolder;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 80px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.homeheading{
+  font-family: var(Pacaembu,sans-serif);
+  color: palevioletred;
+  font-weight: 680;
+  letter-spacing: -.02em;
+  line-height: 1.4;
+}
+
+.homecontent{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  padding-top: 100px;
+  margin-bottom: 15px;
 }
 
-.App-link {
-  color: #61dafb;
+.homeheading2{
+  background-color: palevioletred;
+  font-weight: 680;
+  letter-spacing: -.02em;
+  line-height: 1.4;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.subheading{
+  font-weight: bolder;
+  color: palevioletred;
+  height: 150px;
+}
+
+.page1{
+  background: url(./images/image6.png);
+  background-size: cover;
+  width: 100%;
+  height:100vh;
+}
+
+.page2{
+  background: url(./images/image7.png);
+  background-size: cover;
+  width: 100%;
+  height:100vh;
+}
+
+.page3{
+  background: url(./images/image15.png);
+  background-size: cover;
+  width: 100%;
+  height:100vh;
+}
+
+.page4{
+  background: url(./images/image16.png);
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+
+.loginpage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:85vh;
+}
+
+.imagelogin{
+  background: url(./images/image12.png);
+  background-size:cover;
+  height: 69vh;
+}
+
+.container1{
+  width: 60%;
+  height: 70vh;
+  padding-right: 12.5px;
+  border: 5px solid palevioletred;
+  background-color: white;
+}
+
+.loginprop{
+  display: inline-block;
+}
+
+.loginheading{
+  background: url(./images/image10.png);
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+}
+
+.imagelogin2{
+  background: url(./images/image13.png);
+  background-size:cover;
+  height: 69vh;
+}
+
+.loginresp1{
+  margin-bottom: 30px;
+}
+
+.loginresp{
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.suggestionlabel{
+  font-weight: bolder;
+}
+
+.displayans{
+  color: palevioletred;
+  display: none;
+  padding: 7px;
+}
+
+.line1{
+  border: 3px solid white;
+  height: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+/* Media Queries */
+
+@media only screen and (max-width: 1630px) {
+  .page2{
+    height:110vh;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media only screen and (max-width: 1150px) {
+
+  .page2{
+    height:120vh;
   }
+
+  .loginpage{
+    height:75vh;
+  }
+
+  .container1{
+    width: 60%;
+    height: 60vh;
+    padding-right: 12.5px;
+  }
+
+  .imagelogin{
+    height: 50vh;
+  }
+
+  .column1{
+    font-size:small;
+  }
+
+  .loginresp{
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 995px) {
+  .page2{
+    height:150vh;
+  }
+}
+
+@media only screen and (max-width: 815px) {
+
+  .page2{
+    height:140vh;
+  }
+
+  .sugghead{
+    font-size:larger;
+  }
+
+  .sugghead1{
+    font-size: medium;
+    font-weight: bolder;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+
+  .page2{
+    height:150vh;
+  }
+
+  .loginresp1{
+    margin-bottom: 5px;
+  }
+
+  .loginresp{
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
+  .container1{
+    width: 70%;
+    height: 50vh;
+    padding-right: 12.5px;
+  }
+
+  .imagelogin{
+    height: 40vh;
+  }
+
+  .column1{
+    font-size:x-small;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+
+  .page2{
+    height:170vh;
+  }
+
+  .displayans{
+    font-size: medium;
+  }
+
+  .container1{
+    width: 90%;
+    height: 45vh;
+    padding-right: 12.5px;
+  }
+
+  .imagelogin{
+    height: 30vh;
+  }
+
+  .column1{
+    font-size:xx-small;
+  }
+}
+
+input[type="color"] {
+	border: none;
+	width: 82px;
+	height: 62px;
+  display: inline-block;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
 }
