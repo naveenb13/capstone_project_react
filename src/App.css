@@ -106,6 +106,13 @@
   height:85vh;
 }
 
+.signuppage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:85vh;
+}
+
 .imagelogin{
   background: url(./images/image12.png);
   background-size:cover;
@@ -120,8 +127,17 @@
   background-color: white;
 }
 
+.container2{
+  width: 60%;
+  height: 70vh;
+  padding-right: 12.5px;
+  border: 5px solid palevioletred;
+  background-color: white;
+}
+
 .loginprop{
   display: inline-block;
+  width: 60%;
 }
 
 .loginheading{
@@ -162,6 +178,18 @@
   height: 4px;
 }
 
+.validation{
+  color: red;
+}
+
+.signhead{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.signmargin{
+  margin-bottom: 20px;
+}
 
 
 
@@ -176,6 +204,18 @@
 @media only screen and (max-width: 1630px) {
   .page2{
     height:110vh;
+  }
+}
+
+@media only screen and (max-width: 1387px) {
+  .signhead{
+    font-size: 200%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .validation{
+    font-size:small;
   }
 }
 
@@ -199,6 +239,10 @@
     height: 50vh;
   }
 
+  .imagelogin2{
+    height: 60vh;
+  }
+
   .column1{
     font-size:small;
   }
@@ -206,6 +250,10 @@
   .loginresp{
     margin-bottom: 10px;
     margin-top: 10px;
+  }
+
+  .signmargin{
+    margin-bottom: 15px;
   }
 }
 
@@ -219,6 +267,20 @@
 
   .page2{
     height:140vh;
+  }
+
+  .signhead{
+    font-size:larger;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .imagelogin2{
+    height: 40vh;
+  }
+
+  .validation{
+    font-size:xx-small;
   }
 
   .sugghead{
@@ -261,6 +323,30 @@
   }
 }
 
+@media only screen and (max-width: 585px) {
+  .signhead{
+    font-size:small;
+  }
+
+  .imagelogin2{
+    height: 40vh;
+  }
+
+  .validation{
+    font-size:50%;
+  }
+
+  .label1{
+    font-size: small;
+  }
+
+  .container2{
+    width: 80%;
+    height: 60vh;
+    padding-right: 12.5px;
+  }
+}
+
 @media only screen and (max-width: 500px) {
 
   .page2{
@@ -283,6 +369,39 @@
 
   .column1{
     font-size:xx-small;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .signmargin{
+    margin-bottom: 5px;
+  }
+
+  .imagelogin2{
+    height: 30vh;
+  }
+
+  .container2{
+    width: 90%;
+    height: 70vh;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .signhead{
+    font-size:xx-small;
+  }
+
+  .validation{
+    font-size:30%;
+  }
+
+  .label1{
+    font-size: xx-small;
+  }
+
+  .imagelogin2{
+    height: 20vh;
   }
 }
 

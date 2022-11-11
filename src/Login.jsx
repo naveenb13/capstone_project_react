@@ -13,6 +13,24 @@ function Login() {
       email: "",
       password: "",
     },
+    validate : (values) => {
+
+      let errors = {}
+
+      if(values.email === ""){
+          errors.email = "Please enter email"
+      }
+
+      if(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{3}$/i.test(values.email) !== true){
+          errors.email = "Please enter a Valid email ID"
+      }
+
+      if(values.password === ""){
+          errors.password = "Please enter Password"
+      }
+
+      return errors;
+  },
     onSubmit: async (values) => {
       try {
         let loginData = await axios.post(`${env.api}/login`, values)
@@ -39,12 +57,12 @@ function Login() {
                 <div className="loginresp1">
                   <label for="exampleInputEmail1" className="form-label mb-3">Email address</label>
                   <input name='email' type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={formik.values.email} onChange={formik.handleChange} />
-                  <div id="emailHelp" className="form-text text-danger">We'll never share your email with anyone else.</div>
+                  <span className='validation'>{formik.errors.email}</span>
                 </div>
                 <div className="loginresp1">
                   <label for="exampleInputPassword1" className="form-label mb-3">Password</label>
                   <input type="password" className="form-control" id="exampleInputPassword1" name="password" value={formik.values.password} onChange={formik.handleChange} />
-                  <div id="emailHelp" className="form-text loginresp text-danger">We'll never share your email with anyone else.</div>
+                  <span className='validation'>{formik.errors.password}</span>
                 </div>
                 <div className="d-grid gap-2">
                   <button type={"submit"} className="btn btn-success loginresp1">Login</button>
